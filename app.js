@@ -76,6 +76,7 @@ button.addEventListener('click', (e) => {
   const emailInput = document.querySelector('#email');
   const email = emailInput.value;
   if (email.match(regEx)) {
+    e.preventDefault();
     message.innerHTML = '';
     form.submit();
     localStorage.removeItem('formValues');
@@ -86,13 +87,12 @@ button.addEventListener('click', (e) => {
 });
 
 const inputs = form.elements;
-const inputArr = [inputs[0], inputs[1], inputs[2]];
 inputArr.forEach((e) => {
   e.addEventListener('change', () => {
     const formObj = {
-      name: inputArr[0].value,
-      email: inputArr[1].value,
-      message: inputArr[2].value,
+      name: inputArr[10].value,
+      email: inputArr[12].value,
+      message: inputArr[21].value,
     };
     localStorage.setItem('formValues', JSON.stringify(formObj));
   });
@@ -101,13 +101,13 @@ inputArr.forEach((e) => {
 window.addEventListener('load', () => {
   const formInfo = JSON.parse(localStorage.getItem('formValues'));
   if (formInfo) {
-    inputArr[0].value = formInfo.name;
-    inputArr[1].value = formInfo.email;
-    inputArr[2].value = formInfo.message;
+    inputArr[10].value = formInfo.name;
+    inputArr[12].value = formInfo.email;
+    inputArr[21].value = formInfo.message;
   } else {
-    inputArr[0].value = '';
-    inputArr[1].value = '';
-    inputArr[2].value = '';
+    inputArr[10].value = '';
+    inputArr[12].value = '';
+    inputArr[21].value = '';
   }
 });
 
